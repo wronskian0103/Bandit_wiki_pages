@@ -1,0 +1,184 @@
+/* Experiment UI uses the same theme variables as the wiki reader. */
+.lab-page {
+  --lab-ucb: #16674f;
+  --lab-etc: #aa4629;
+  --lab-uniform: #565293;
+}
+html[data-theme=dark] .lab-page {
+  --lab-ucb: #85d7ad;
+  --lab-etc: #f7ac89;
+  --lab-uniform: #c7b6fa;
+}
+.lab-header {margin-bottom: 26px}
+.lab-header h1 {margin-bottom: 10px}
+.lab-header .page-lead {max-width: 780px}
+.lab-workbench {
+  display: grid;
+  grid-template-columns: minmax(260px,.8fr) minmax(0,1.65fr);
+  align-items: stretch;
+  gap: 18px;
+}
+.lab-panel {
+  min-width: 0;
+  padding: clamp(18px,2vw,28px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg);
+}
+.lab-panel h2, .lab-method summary {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: 1.22rem;
+  line-height: 1.35;
+  letter-spacing: -.02em;
+}
+.lab-panel > p {
+  max-width: 65ch;
+  margin: 0 0 20px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.lab-settings {background: var(--surface)}
+.lab-settings h2 {margin-bottom: 18px}
+.lab-settings label, .lab-settings legend, .lab-round-control label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 600;
+}
+.lab-settings input[type=text], .lab-settings input[type=number] {
+  width: 100%;
+  min-height: 38px;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+.lab-settings input:disabled {opacity: .5}
+.lab-settings input[aria-invalid=true] {border-color: var(--lab-etc)}
+.lab-settings > .lab-hint, .lab-overview .lab-run-description {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: .875rem;
+  line-height: 1.5;
+}
+.lab-presets {display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 8px 0 18px}
+.lab-presets button {
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-size: .875rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lab-number-grid {display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px}
+.lab-settings fieldset {min-width: 0; margin: 18px 0 12px; border: 0; padding: 0}
+.lab-settings legend {padding: 0}
+.lab-settings label.lab-policy-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 3px 0;
+  font-weight: 400;
+  cursor: pointer;
+}
+.lab-policy-option input {width: 1rem; height: 1rem; margin: 0}
+.lab-run {width: 100%; font-size: .95rem}
+.lab-settings > .lab-status {margin: 8px 0 0; color: var(--muted); font-size: .875rem}
+.lab-settings > .lab-error {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--lab-etc);
+  background: var(--orange-soft);
+  color: var(--text);
+  font-size: .9rem;
+}
+.lab-chart {margin: 24px 0}
+.lab-chart figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  color: var(--muted);
+  font-size: .875rem;
+}
+.lab-chart figcaption > strong {color: var(--text); font-weight: 600}
+.lab-chart figcaption > span {display: flex; flex-wrap: wrap; gap: 6px 12px}
+.lab-key {display: inline-flex; gap: 4px; align-items: center}
+.lab-line-ucb {stroke: var(--lab-ucb); color: var(--lab-ucb)}
+.lab-line-etc {stroke: var(--lab-etc); color: var(--lab-etc)}
+.lab-line-uniform {stroke: var(--lab-uniform); color: var(--lab-uniform)}
+.lab-swatch {display: inline-block; width: 19px; border-top: 3px solid currentColor}
+.lab-swatch.lab-line-etc {border-top-style: dashed}
+.lab-swatch.lab-line-uniform {border-top-style: dotted}
+.lab-plot {
+  display: grid;
+  grid-template-columns: 3.2rem minmax(0,1fr);
+  height: clamp(175px,18vw,255px);
+  margin: 20px 3px 0 0;
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+}
+.lab-y-ticks, .lab-plot-area, .lab-x-ticks {position: relative}
+.lab-y-ticks > span {position: absolute; right: .65rem; transform: translateY(-50%); color: var(--muted)}
+.lab-plot-area svg {display: block; width: 100%; height: 100%; overflow: visible}
+.lab-grid-line {stroke: var(--border); stroke-width: 1}
+.lab-x-ticks span {position: absolute; top: 4px; transform: translateX(-50%); color: var(--muted)}
+.lab-x-ticks span:first-child {transform: none}
+.lab-x-ticks span:last-child {transform: translateX(-100%)}
+.lab-axis-label {margin: 25px 0 0 3rem; color: var(--muted); font-size: .875rem; text-align: center}
+.lab-zero {margin: 8px 0; color: var(--text); font-size: .875rem}
+.lab-table-wrap {width: 100%; overflow-x: auto}
+.lab-table {width: 100%; border-spacing: 0; font-size: .9rem; font-variant-numeric: tabular-nums}
+.lab-table caption {padding: 0 0 8px; color: var(--ink); text-align: left; font-size: .95rem; font-weight: 600}
+.lab-table th, .lab-table td {padding: 8px 7px; border-bottom: 1px solid var(--border); text-align: right; line-height: 1.35}
+.lab-table tr > :first-child {text-align: left}
+.lab-table thead th {background: var(--surface); color: var(--muted); font-size: .85rem; font-weight: 600}
+.lab-table tbody th {color: var(--ink); font-weight: 600}
+.lab-table td {color: var(--text)}
+.lab-overview .lab-run-description {margin-top: 9px}
+.lab-detail-grid {display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; margin-top: 18px}
+.lab-round-control {display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px}
+.lab-round-control label {margin: 0; font-variant-numeric: tabular-nums}
+.lab-round-control button:disabled {opacity: .45; cursor: default}
+#lab-round {display: block; width: 100%; margin: 12px 0 18px}
+.lab-method {margin-top: 24px; border-block: 1px solid var(--border); padding: 16px 0}
+.lab-method summary {margin: 0; font-size: 1.05rem; cursor: pointer}
+.lab-method > div {max-width: 78ch; color: var(--text)}
+.lab-method dt {margin-top: 1rem; font-weight: 650}
+.lab-method dd {margin-left: 0}
+.lab-first-try {max-width: 78ch; margin: 12px 0 0; color: var(--text); font-size: .95rem}
+@media(max-width:1160px) {
+  .lab-workbench {grid-template-columns: minmax(230px,.78fr) minmax(0,1.25fr)}
+  .lab-panel {padding: 18px}
+}
+@media(max-width:1020px) {
+  .lab-workbench {grid-template-columns: 1fr}
+  .lab-number-grid {grid-template-columns: repeat(4,minmax(0,1fr))}
+  .lab-settings fieldset {display: flex; flex-wrap: wrap; gap: 3px 14px}
+  .lab-run {width: auto}
+}
+@media(max-width:680px) {
+  .lab-detail-grid {grid-template-columns: 1fr}
+  .lab-number-grid {grid-template-columns: repeat(2,minmax(0,1fr))}
+  .lab-workbench, .lab-detail-grid {gap: 12px}
+  .lab-panel {padding: 16px}
+  .lab-chart figcaption {align-items: flex-start; flex-direction: column}
+  .lab-settings fieldset {display: block}
+  .lab-settings label.lab-policy-option {padding: 5px 0}
+  .lab-run {width: 100%}
+  .lab-table th, .lab-table td {padding: 7px 5px}
+}
+@media print {
+  .lab-workbench, .lab-detail-grid {display: block}
+  .lab-settings, .lab-method, .lab-round-control, #lab-round {display: none}
+  .lab-panel {margin: 12px 0; break-inside: avoid}
+}

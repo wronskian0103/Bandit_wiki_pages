@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#174b43">
+  <meta name="description" content="An English study wiki on bandit algorithms: complete definitions, algorithms, theorems, and proofs from Team 333's notes.">
+  <title>Bandit Algorithms · Study Wiki</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="experiment.css">
+  <script>
+    try { document.documentElement.dataset.theme = localStorage.getItem('bandit-theme') || 'light'; } catch (_) {}
+    window.MathJax = {
+      loader: { load: [] },
+      chtml: { fontURL: 'vendor/mathjax/output/chtml/fonts/woff-v2' },
+      tex: {
+        inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']],
+        processEscapes: true, tags: 'none',
+        macros: {
+          N: '\\mathbb{N}', Z: '\\mathbb{Z}', Q: '\\mathbb{Q}', R: '\\mathbb{R}', C: '\\mathbb{C}',
+          Expec: ['\\underset{#2}{\\mathbb{E}}\\left[ #1 \\right]', 2],
+          ExpecTwo: ['\\underset{#3}{\\underset{#2}{\\mathbb{E}}}\\left[ #1 \\right]', 3],
+          ExpecThree: ['\\underset{#4}{\\underset{#3}{\\underset{#2}{\\mathbb{E}}}}\\left[ #1 \\right]', 4],
+          ExpecCond: ['\\mathbb{E}\\left[\\left. #1 \\right| #2 \\right]', 2],
+          Prob: ['\\underset{#2}{\\mathbb{P}}\\left[ #1 \\right]', 2],
+          Var: ['\\underset{#2}{\\mathbb{V}}\\left[ #1 \\right]', 2],
+          indicatorcond: ['\\mathbf{1}_{\\{#1\\}}', 1],
+          argmin: ['\\underset{#1}{\\mathrm{argmin}}\\,', 1],
+          argmax: ['\\underset{#1}{\\mathrm{argmax}}\\,', 1],
+          RightSqP: ']',
+          conv: ['\\mathrm{conv}\\left(#1\\right)', 1],
+          cone: ['\\mathrm{cone}\\left(#1\\right)', 1],
+          affine: ['\\mathrm{Affine}\\left(#1\\right)', 1],
+          Diag: ['\\mathrm{Diag}\\left(#1\\right)', 1]
+        }
+      },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'], enableMenu: false },
+      startup: { typeset: false }
+    };
+  </script>
+  <script defer src="content.js"></script>
+  <script defer src="experiment-engine.js"></script>
+  <script defer src="experiment-ui.js"></script>
+  <script defer src="app.js"></script>
+  <script defer src="vendor/mathjax/tex-chtml.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Wiki navigation">
+      <a class="brand" href="#/">
+        <span class="brand-mark" aria-hidden="true">b<span>·</span></span>
+        <span><span class="brand-title">Bandit Algorithms</span><span class="brand-subtitle">THE STUDY WIKI</span></span>
+      </a>
+      <a class="nav-link home-link" href="#/" data-page="home"><span aria-hidden="true">⌂</span> Overview</a>
+      <a class="nav-link home-link" href="#/experiments" data-page="experiments">Bandit lab</a>
+      <div class="nav-label">THE NOTES</div>
+      <nav id="chapter-nav" aria-label="Chapters"></nav>
+      <div class="nav-label">REFERENCE DESK</div>
+      <nav class="utility-nav" aria-label="Reference pages">
+        <a class="nav-link" href="#/theorems" data-page="theorems">Statements &amp; algorithms</a>
+        <a class="nav-link" href="#/notation" data-page="notation">Notation guide</a>
+        <a class="nav-link" href="#/references" data-page="references">References &amp; source files</a>
+      </nav>
+      <div class="sidebar-footer"><span>Team 333 · BanditBury Group</span><span>Based on the study-group notes</span></div>
+    </aside>
+    <button class="mobile-scrim" id="mobile-scrim" aria-label="Close navigation" hidden></button>
+    <div class="main-shell">
+      <header class="topbar">
+        <button class="icon-button" id="menu-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">☰</button>
+        <div class="breadcrumbs" id="breadcrumbs">Library <span>/</span> Overview</div>
+        <div class="topbar-actions">
+          <button class="search-trigger" id="open-search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>Search the wiki</span><kbd>/</kbd></button>
+          <button class="icon-button" id="theme-toggle" aria-label="Switch to dark theme" title="Change theme">◐</button>
+        </div>
+      </header>
+      <main id="main" tabindex="-1"><p class="loading-message">Opening the study wiki…</p></main>
+      <noscript><p class="callout">Enable JavaScript to browse this wiki. The original notes are available in <a href="https://github.com/wronskian0103/Bandit_wiki/blob/be701b7c46bb85378352b853aacce7bacae6b0d1/main.tex">main.tex</a>.</p></noscript>
+      <footer class="site-footer">Bandit Algorithms Wiki <span>Definitions, decisions, and the cost of learning.</span></footer>
+    </div>
+  </div>
+  <dialog class="search-dialog" id="search-dialog" aria-label="Search the wiki">
+    <div class="search-header"><label class="sr-only" for="search-input">Search definitions, proofs, and algorithms</label><input id="search-input" type="search" placeholder="Search definitions, proofs, algorithms…" autocomplete="off" spellcheck="false"><button class="icon-button" id="close-search" aria-label="Close search">✕</button></div>
+    <div class="search-filters"><label for="search-chapter">Within</label><select id="search-chapter"><option value="all">All chapters</option></select><span id="search-count" aria-live="polite"></span></div>
+    <div class="search-results" id="search-results"></div>
+    <div class="search-help"><kbd>Esc</kbd> to close <span>Searches the full notes, including proofs</span></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+</body>
+</html>
